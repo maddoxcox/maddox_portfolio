@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - JS Learning</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body data-lesson="events">
+    <header>
+        <nav>
+            <a href="../../index.html" class="logo">JS<span>Learning</span></a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#basics">Basics</a></li>
+                <li><a href="../../index.html#intermediate">Intermediate</a></li>
+                <li><a href="../../index.html#quizzes">Quizzes</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        <div class="lesson-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> / <a href="../../index.html#intermediate">Intermediate</a> / Events
+            </div>
+            <h1>Events in JavaScript</h1>
+            <p>Learn to handle user interactions with event listeners.</p>
+        </div>
+
+        <div class="lesson-content">
+            <section>
+                <h2>What are Events?</h2>
+                <p>Events are actions that happen in the browser - clicks, key presses, mouse movements, form submissions, and more. JavaScript can detect and respond to these events.</p>
+
+                <div class="info-box">
+                    <strong>Key Concept:</strong> Events make your web pages interactive. They're the bridge between user actions and JavaScript code.
+                </div>
+            </section>
+
+            <section>
+                <h2>Adding Event Listeners</h2>
+                <p>The <code>addEventListener</code> method is the modern way to handle events.</p>
+
+                <div class="code-block">
+                    <div class="code-header"><span class="language">JavaScript</span></div>
+                    <pre><code><span class="comment">// Syntax: element.addEventListener(event, callback)</span>
+
+<span class="keyword">const</span> button = document.<span class="function">querySelector</span>(<span class="string">'button'</span>);
+
+button.<span class="function">addEventListener</span>(<span class="string">'click'</span>, <span class="keyword">function</span>() {
+    console.<span class="function">log</span>(<span class="string">'Button was clicked!'</span>);
+});
+
+<span class="comment">// With arrow function</span>
+button.<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => {
+    console.<span class="function">log</span>(<span class="string">'Clicked!'</span>);
+});</code></pre>
+                </div>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Common event types
+console.log("Mouse Events:");
+console.log("- click: Mouse click");
+console.log("- dblclick: Double click");
+console.log("- mouseenter: Mouse enters element");
+console.log("- mouseleave: Mouse leaves element");
+console.log("- mousemove: Mouse moves over element");
+
+console.log("\nKeyboard Events:");
+console.log("- keydown: Key is pressed");
+console.log("- keyup: Key is released");
+console.log("- keypress: Key is pressed (deprecated)");
+
+console.log("\nForm Events:");
+console.log("- submit: Form is submitted");
+console.log("- change: Input value changes");
+console.log("- input: Input receives input");
+console.log("- focus: Element gains focus");
+console.log("- blur: Element loses focus");
+
+console.log("\nDocument Events:");
+console.log("- DOMContentLoaded: DOM is ready");
+console.log("- load: Page fully loaded");
+console.log("- scroll: Page is scrolled");</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>The Event Object</h2>
+                <p>Event handlers receive an event object with useful information about the event.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// The event object contains useful properties
+
+console.log("Event Object Properties:");
+console.log("");
+
+console.log("Common properties:");
+console.log("- e.type: Type of event (click, keydown, etc.)");
+console.log("- e.target: Element that triggered the event");
+console.log("- e.currentTarget: Element with the listener");
+console.log("- e.timeStamp: When the event occurred");
+
+console.log("\nMouse event properties:");
+console.log("- e.clientX/Y: Mouse position in viewport");
+console.log("- e.pageX/Y: Mouse position in document");
+console.log("- e.button: Which mouse button (0=left)");
+
+console.log("\nKeyboard event properties:");
+console.log("- e.key: The key pressed ('Enter', 'a', etc.)");
+console.log("- e.code: Physical key code ('KeyA', 'Enter')");
+console.log("- e.shiftKey: Shift key was held");
+console.log("- e.ctrlKey: Ctrl key was held");
+console.log("- e.altKey: Alt key was held");
+
+console.log("\nMethods:");
+console.log("- e.preventDefault(): Stop default behavior");
+console.log("- e.stopPropagation(): Stop event bubbling");</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Interactive Demo</h2>
+                <p>Try interacting with these elements to see events in action:</p>
+
+                <div id="event-demo" style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                    <button id="click-btn" class="btn btn-primary btn-small" style="margin-right: 10px;">Click Me</button>
+                    <button id="hover-btn" class="btn btn-secondary btn-small">Hover Me</button>
+                    <div style="margin-top: 1rem;">
+                        <input type="text" id="type-input" placeholder="Type something..." style="padding: 0.5rem; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); width: 200px;">
+                    </div>
+                    <div id="event-output" style="margin-top: 1rem; padding: 1rem; background: var(--code-bg); border-radius: 4px; font-family: monospace; min-height: 60px;"></div>
+                </div>
+
+                <script>
+                    // This is outside the code editor to make the demo work
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const output = document.getElementById('event-output');
+                        const clickBtn = document.getElementById('click-btn');
+                        const hoverBtn = document.getElementById('hover-btn');
+                        const input = document.getElementById('type-input');
+
+                        function log(msg) {
+                            output.innerHTML = msg + '<br>' + output.innerHTML;
+                            if (output.children.length > 5) {
+                                output.removeChild(output.lastChild);
+                            }
+                        }
+
+                        clickBtn.addEventListener('click', (e) => {
+                            log(`<span style="color: #4ecca3">Click!</span> Button clicked at (${e.clientX}, ${e.clientY})`);
+                        });
+
+                        hoverBtn.addEventListener('mouseenter', () => {
+                            log('<span style="color: #e94560">Mouse entered</span> the hover button');
+                        });
+
+                        hoverBtn.addEventListener('mouseleave', () => {
+                            log('<span style="color: #a0a0a0">Mouse left</span> the hover button');
+                        });
+
+                        input.addEventListener('input', (e) => {
+                            log(`<span style="color: #61afef">Input:</span> "${e.target.value}"`);
+                        });
+
+                        input.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') {
+                                log(`<span style="color: #c678dd">Enter pressed!</span> Value: "${e.target.value}"`);
+                            }
+                        });
+                    });
+                </script>
+            </section>
+
+            <section>
+                <h2>Event Bubbling and Capturing</h2>
+                <p>Events propagate through the DOM tree. Understanding this is crucial for complex applications.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Event Propagation
+console.log("=== Event Bubbling ===");
+console.log("Events bubble UP from target to ancestors");
+console.log("");
+console.log("When you click a button inside a div:");
+console.log("1. Button receives click");
+console.log("2. Div receives click");
+console.log("3. Body receives click");
+console.log("4. Document receives click");
+
+console.log("\n=== Stopping Propagation ===");
+console.log("e.stopPropagation() stops the bubble");
+
+console.log("\n=== Event Capturing ===");
+console.log("Capturing goes DOWN from ancestors to target");
+console.log("Use { capture: true } option:");
+console.log("element.addEventListener('click', fn, { capture: true })");
+
+console.log("\n=== Practical Example ===");
+console.log("Bubbling is useful for event delegation!");
+console.log("Add ONE listener to parent instead of many to children");</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Event Delegation</h2>
+                <p>Instead of adding listeners to many elements, add one to a parent and use the event object to determine the target.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Without delegation (bad - many listeners)
+console.log("Without delegation:");
+console.log("buttons.forEach(btn => {");
+console.log("    btn.addEventListener('click', handleClick);");
+console.log("});");
+console.log("Problem: 100 buttons = 100 listeners!");
+
+console.log("\n=== With Event Delegation ===");
+console.log("container.addEventListener('click', (e) => {");
+console.log("    if (e.target.matches('.btn')) {");
+console.log("        handleClick(e);");
+console.log("    }");
+console.log("});");
+console.log("Better: 1 listener handles all buttons!");
+
+console.log("\n=== Benefits ===");
+console.log("1. Less memory usage");
+console.log("2. Works for dynamically added elements");
+console.log("3. Cleaner code");
+
+console.log("\n=== Practical Example ===");
+console.log("Todo list - one listener on the list,");
+console.log("handles all item clicks!");</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Preventing Default Behavior</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Some elements have default behaviors
+console.log("Default behaviors that can be prevented:");
+console.log("");
+
+console.log("Links (<a>): Navigate to href");
+console.log("Forms: Submit and reload page");
+console.log("Checkboxes: Toggle checked state");
+console.log("Right-click: Show context menu");
+console.log("Keyboard shortcuts: Browser shortcuts");
+
+console.log("\n=== Preventing Defaults ===");
+console.log("");
+console.log("// Stop link navigation");
+console.log("link.addEventListener('click', (e) => {");
+console.log("    e.preventDefault();");
+console.log("    // Handle click with JavaScript");
+console.log("});");
+
+console.log("\n// Stop form submission");
+console.log("form.addEventListener('submit', (e) => {");
+console.log("    e.preventDefault();");
+console.log("    // Handle form with JavaScript (AJAX)");
+console.log("});");
+
+console.log("\n// Stop right-click menu");
+console.log("element.addEventListener('contextmenu', (e) => {");
+console.log("    e.preventDefault();");
+console.log("    // Show custom menu");
+console.log("});");</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Removing Event Listeners</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// To remove a listener, you need a reference to the function
+
+console.log("=== Removing Listeners ===");
+console.log("");
+
+console.log("// Named function (can be removed)");
+console.log("function handleClick() { ... }");
+console.log("button.addEventListener('click', handleClick);");
+console.log("button.removeEventListener('click', handleClick);");
+
+console.log("\n// Anonymous function (CANNOT be removed!)");
+console.log("button.addEventListener('click', () => { ... });");
+console.log("// No way to remove this!");
+
+console.log("\n=== One-time Events ===");
+console.log("// Use { once: true } for single-use listeners");
+console.log("button.addEventListener('click', fn, { once: true });");
+console.log("// Automatically removed after first trigger!");
+
+console.log("\n=== AbortController ===");
+console.log("// Modern way to remove multiple listeners");
+console.log("const controller = new AbortController();");
+console.log("element.addEventListener('click', fn, {");
+console.log("    signal: controller.signal");
+console.log("});");
+console.log("controller.abort(); // Removes all listeners");</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="challenge-box">
+                    <h4>Challenge: Keyboard Shortcuts</h4>
+                    <p>Describe how you would create keyboard shortcuts for a web app. What events would you use? How would you detect modifier keys?</p>
+
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <span>Your solution</span>
+                            <div>
+                                <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                                <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                            </div>
+                        </div>
+                        <textarea class="editor-textarea">// Keyboard shortcut handler example
+
+console.log("=== Keyboard Shortcuts Implementation ===");
+console.log("");
+
+console.log("document.addEventListener('keydown', (e) => {");
+console.log("    // Ctrl+S: Save");
+console.log("    if (e.ctrlKey && e.key === 's') {");
+console.log("        e.preventDefault();");
+console.log("        console.log('Save!');");
+console.log("    }");
+console.log("");
+console.log("    // Ctrl+Shift+N: New");
+console.log("    if (e.ctrlKey && e.shiftKey && e.key === 'N') {");
+console.log("        e.preventDefault();");
+console.log("        console.log('New!');");
+console.log("    }");
+console.log("");
+console.log("    // Escape: Close modal");
+console.log("    if (e.key === 'Escape') {");
+console.log("        console.log('Close!');");
+console.log("    }");
+console.log("});");
+
+console.log("\n=== Tips ===");
+console.log("- Use keydown for shortcuts (keyup may be too late)");
+console.log("- Always preventDefault to stop browser shortcuts");
+console.log("- Check ctrlKey, shiftKey, altKey, metaKey (Mac Cmd)");</textarea>
+                        <div class="editor-output">
+                            <div class="output-label">Output</div>
+                            <div class="output-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mark-complete">
+            <button class="btn btn-primary">Mark as Complete</button>
+        </div>
+        <div class="complete-status" style="display: none;">
+            ✓ Lesson Completed
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="dom.html" class="prev">← DOM Manipulation</a>
+            <a href="../quizzes/intermediate-quiz.html" class="next">Take the Quiz →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>JS Learning - Learn JavaScript the interactive way</p>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/codeEditor.js"></script>
+</body>
+</html>

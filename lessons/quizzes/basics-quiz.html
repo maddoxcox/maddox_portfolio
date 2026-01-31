@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics Quiz - JS Learning</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body data-lesson="basics-quiz">
+    <header>
+        <nav>
+            <a href="../../index.html" class="logo">JS<span>Learning</span></a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#basics">Basics</a></li>
+                <li><a href="../../index.html#intermediate">Intermediate</a></li>
+                <li><a href="../../index.html#quizzes">Quizzes</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="quiz-container">
+        <div class="quiz-header">
+            <h1>JavaScript Basics Quiz</h1>
+            <p>Test your knowledge of JavaScript fundamentals. 10 questions covering variables, functions, loops, and conditionals.</p>
+        </div>
+
+        <div class="quiz-progress"></div>
+
+        <div class="question-card"></div>
+
+        <div class="quiz-actions">
+            <button class="btn btn-secondary prev-btn" style="display: none;">Previous</button>
+            <button class="btn btn-primary next-btn" style="display: none;">Next Question</button>
+            <button class="btn btn-success submit-btn" style="display: none;">See Results</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>JS Learning - Learn JavaScript the interactive way</p>
+        </div>
+    </footer>
+
+    <script id="quiz-data" type="application/json">
+    {
+        "id": "basics-quiz",
+        "title": "JavaScript Basics Quiz",
+        "questions": [
+            {
+                "question": "Which keyword should you use to declare a variable that won't be reassigned?",
+                "options": ["var", "let", "const", "static"],
+                "correct": 2,
+                "explanation": "const is used for variables that shouldn't be reassigned. It provides immutability for the binding."
+            },
+            {
+                "question": "What will this code output?",
+                "code": "let x = 5;\nlet y = '5';\nconsole.log(x == y);",
+                "options": ["true", "false", "undefined", "Error"],
+                "correct": 0,
+                "explanation": "The == operator performs type coercion, so '5' is converted to 5 before comparison."
+            },
+            {
+                "question": "What is the correct syntax for an arrow function that doubles a number?",
+                "options": [
+                    "const double = x => x * 2",
+                    "const double = x -> x * 2",
+                    "const double = function(x) => x * 2",
+                    "const double = (x) >> x * 2"
+                ],
+                "correct": 0,
+                "explanation": "Arrow functions use => syntax. For single parameters, parentheses are optional, and for single expressions, the return is implicit."
+            },
+            {
+                "question": "Which loop is guaranteed to execute at least once?",
+                "options": ["for loop", "while loop", "do...while loop", "for...of loop"],
+                "correct": 2,
+                "explanation": "The do...while loop checks its condition after the first iteration, guaranteeing at least one execution."
+            },
+            {
+                "question": "What does typeof null return?",
+                "options": ["'null'", "'undefined'", "'object'", "'boolean'"],
+                "correct": 2,
+                "explanation": "This is a known quirk in JavaScript. typeof null returns 'object', which is considered a bug that persists for backwards compatibility."
+            },
+            {
+                "question": "What is the output of this code?",
+                "code": "for (let i = 0; i < 3; i++) {\n  console.log(i);\n}",
+                "options": ["0 1 2", "1 2 3", "0 1 2 3", "1 2"],
+                "correct": 0,
+                "explanation": "The loop starts at 0, increments after each iteration, and stops when i reaches 3 (before 3 is printed)."
+            },
+            {
+                "question": "What will this code return?",
+                "code": "function greet(name = 'Guest') {\n  return 'Hello, ' + name;\n}\ngreet();",
+                "options": ["'Hello, '", "'Hello, undefined'", "'Hello, Guest'", "Error"],
+                "correct": 2,
+                "explanation": "Default parameters are used when the argument is undefined or not provided. Since greet() is called without arguments, 'Guest' is used."
+            },
+            {
+                "question": "Which operator should you use for strict equality comparison?",
+                "options": ["=", "==", "===", "!=="],
+                "correct": 2,
+                "explanation": "=== is the strict equality operator that compares both value and type without coercion."
+            },
+            {
+                "question": "What is the result of: true && false || true?",
+                "options": ["true", "false", "undefined", "Error"],
+                "correct": 0,
+                "explanation": "&& has higher precedence than ||. So: (true && false) || true = false || true = true"
+            },
+            {
+                "question": "Which statement correctly creates a function declaration?",
+                "options": [
+                    "const add = (a, b) => a + b",
+                    "function add(a, b) { return a + b; }",
+                    "let add = function(a, b) { return a + b }",
+                    "add: function(a, b) { return a + b }"
+                ],
+                "correct": 1,
+                "explanation": "A function declaration uses the 'function' keyword followed by the name. Options A and C are function expressions."
+            }
+        ]
+    }
+    </script>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/quiz.js"></script>
+</body>
+</html>

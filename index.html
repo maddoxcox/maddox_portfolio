@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Learning - Master JavaScript Fundamentals</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">JS<span>Learning</span></a>
+            <ul class="nav-links">
+                <li><a href="#basics">Basics</a></li>
+                <li><a href="#intermediate">Intermediate</a></li>
+                <li><a href="#quizzes">Quizzes</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Learn JavaScript</h1>
+                <p>Master the fundamentals of JavaScript with interactive tutorials, hands-on exercises, and quizzes. Start your journey to becoming a JavaScript developer!</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="progress-container">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="progress-text">
+                    <span>Keep learning!</span>
+                    <span>0% Complete</span>
+                </div>
+            </div>
+
+            <section id="basics" class="topics-section">
+                <h2>Basics</h2>
+                <p>Start here if you're new to JavaScript. Learn the fundamental concepts that form the foundation of the language.</p>
+                <div class="topics-grid">
+                    <a href="lessons/basics/variables.html" class="topic-card" data-lesson="variables">
+                        <span class="difficulty beginner">Beginner</span>
+                        <h3>Variables</h3>
+                        <p>Learn about let, const, var, and different data types in JavaScript.</p>
+                    </a>
+                    <a href="lessons/basics/functions.html" class="topic-card" data-lesson="functions">
+                        <span class="difficulty beginner">Beginner</span>
+                        <h3>Functions</h3>
+                        <p>Master function declarations, expressions, and arrow functions.</p>
+                    </a>
+                    <a href="lessons/basics/loops.html" class="topic-card" data-lesson="loops">
+                        <span class="difficulty beginner">Beginner</span>
+                        <h3>Loops</h3>
+                        <p>Understand for loops, while loops, and iteration methods.</p>
+                    </a>
+                    <a href="lessons/basics/conditionals.html" class="topic-card" data-lesson="conditionals">
+                        <span class="difficulty beginner">Beginner</span>
+                        <h3>Conditionals</h3>
+                        <p>Learn if/else statements, switch cases, and ternary operators.</p>
+                    </a>
+                </div>
+            </section>
+
+            <section id="intermediate" class="topics-section">
+                <h2>Intermediate</h2>
+                <p>Ready to level up? These topics will take your JavaScript skills to the next level.</p>
+                <div class="topics-grid">
+                    <a href="lessons/intermediate/arrays.html" class="topic-card" data-lesson="arrays">
+                        <span class="difficulty intermediate">Intermediate</span>
+                        <h3>Arrays</h3>
+                        <p>Master array methods like map, filter, reduce, and more.</p>
+                    </a>
+                    <a href="lessons/intermediate/objects.html" class="topic-card" data-lesson="objects">
+                        <span class="difficulty intermediate">Intermediate</span>
+                        <h3>Objects</h3>
+                        <p>Deep dive into object properties, methods, and destructuring.</p>
+                    </a>
+                    <a href="lessons/intermediate/dom.html" class="topic-card" data-lesson="dom">
+                        <span class="difficulty intermediate">Intermediate</span>
+                        <h3>DOM Manipulation</h3>
+                        <p>Learn to select and modify HTML elements with JavaScript.</p>
+                    </a>
+                    <a href="lessons/intermediate/events.html" class="topic-card" data-lesson="events">
+                        <span class="difficulty intermediate">Intermediate</span>
+                        <h3>Events</h3>
+                        <p>Handle user interactions with event listeners and event objects.</p>
+                    </a>
+                </div>
+            </section>
+
+            <section id="quizzes" class="topics-section">
+                <h2>Test Your Knowledge</h2>
+                <p>Ready to put your skills to the test? Take our quizzes to see how much you've learned!</p>
+                <div class="topics-grid">
+                    <a href="lessons/quizzes/basics-quiz.html" class="topic-card" data-lesson="basics-quiz">
+                        <span class="difficulty beginner">Beginner</span>
+                        <h3>Basics Quiz</h3>
+                        <p>Test your understanding of JavaScript fundamentals with 10 questions.</p>
+                    </a>
+                    <a href="lessons/quizzes/intermediate-quiz.html" class="topic-card" data-lesson="intermediate-quiz">
+                        <span class="difficulty intermediate">Intermediate</span>
+                        <h3>Intermediate Quiz</h3>
+                        <p>Challenge yourself with advanced concepts in this 10-question quiz.</p>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>JS Learning - Learn JavaScript the interactive way</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

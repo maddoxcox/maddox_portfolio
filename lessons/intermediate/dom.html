@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation - JS Learning</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body data-lesson="dom">
+    <header>
+        <nav>
+            <a href="../../index.html" class="logo">JS<span>Learning</span></a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#basics">Basics</a></li>
+                <li><a href="../../index.html#intermediate">Intermediate</a></li>
+                <li><a href="../../index.html#quizzes">Quizzes</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        <div class="lesson-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> / <a href="../../index.html#intermediate">Intermediate</a> / DOM Manipulation
+            </div>
+            <h1>DOM Manipulation</h1>
+            <p>Learn to select and modify HTML elements with JavaScript.</p>
+        </div>
+
+        <div class="lesson-content">
+            <section>
+                <h2>What is the DOM?</h2>
+                <p>The Document Object Model (DOM) is a programming interface for HTML. It represents the page as a tree of objects that JavaScript can interact with.</p>
+
+                <div class="info-box">
+                    <strong>Key Concept:</strong> The DOM allows JavaScript to access and change all the elements of an HTML document dynamically.
+                </div>
+            </section>
+
+            <section>
+                <h2>Selecting Elements</h2>
+                <p>There are several ways to select elements from the DOM:</p>
+
+                <div class="code-block">
+                    <div class="code-header"><span class="language">JavaScript</span></div>
+                    <pre><code><span class="comment">// Select by ID - returns single element</span>
+<span class="keyword">const</span> header = document.<span class="function">getElementById</span>(<span class="string">'header'</span>);
+
+<span class="comment">// Select by class - returns HTMLCollection</span>
+<span class="keyword">const</span> buttons = document.<span class="function">getElementsByClassName</span>(<span class="string">'btn'</span>);
+
+<span class="comment">// Select by tag - returns HTMLCollection</span>
+<span class="keyword">const</span> paragraphs = document.<span class="function">getElementsByTagName</span>(<span class="string">'p'</span>);
+
+<span class="comment">// Select with CSS selector - returns first match</span>
+<span class="keyword">const</span> first = document.<span class="function">querySelector</span>(<span class="string">'.card'</span>);
+
+<span class="comment">// Select all with CSS selector - returns NodeList</span>
+<span class="keyword">const</span> all = document.<span class="function">querySelectorAll</span>(<span class="string">'.card'</span>);</code></pre>
+                </div>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// querySelector is the most versatile
+// These examples show common selectors
+
+// Select by ID
+console.log("By ID: #header");
+
+// Select by class
+console.log("By class: .nav-links");
+
+// Select by attribute
+console.log("By attribute: [data-lesson]");
+
+// Complex selectors
+console.log("Descendant: nav .logo");
+console.log("Direct child: nav > ul");
+console.log("Multiple: h1, h2, h3");
+
+// Practical example - count elements
+const allLinks = document.querySelectorAll('a');
+console.log("Total links on page:", allLinks.length);
+
+const allButtons = document.querySelectorAll('.btn');
+console.log("Total buttons:", allButtons.length);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Modifying Element Content</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// textContent - gets/sets text only
+const heading = document.querySelector('h1');
+console.log("Current heading:", heading.textContent);
+
+// innerHTML - gets/sets HTML content
+// Be careful with innerHTML and user input (XSS risk)!
+console.log("HTML content example:");
+console.log('<div class="box">Content</div>');
+
+// innerText - similar to textContent
+// but respects CSS styling (hidden elements, etc.)
+
+// Practical examples
+const title = document.querySelector('.lesson-header h1');
+console.log("Lesson title:", title.textContent);
+
+const breadcrumb = document.querySelector('.breadcrumb');
+console.log("Breadcrumb:", breadcrumb.textContent.trim());</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+
+                <div class="info-box warning">
+                    <strong>Security Warning:</strong> Never use <code>innerHTML</code> with user-provided content. Use <code>textContent</code> instead to prevent XSS attacks.
+                </div>
+            </section>
+
+            <section>
+                <h2>Modifying Attributes</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Get, set, and remove attributes
+const link = document.querySelector('a');
+
+// getAttribute
+console.log("Link href:", link.getAttribute('href'));
+
+// setAttribute (example - not actually changing)
+console.log("Set attribute: element.setAttribute('href', 'newurl')");
+
+// Direct property access works for standard attributes
+console.log("Direct access: link.href");
+
+// hasAttribute
+console.log("Has href:", link.hasAttribute('href'));
+
+// Working with data attributes
+const body = document.body;
+console.log("Lesson ID:", body.dataset.lesson);
+
+// Classes (better than setAttribute for classes)
+console.log("\nClass manipulation:");
+console.log("element.classList.add('new-class')");
+console.log("element.classList.remove('old-class')");
+console.log("element.classList.toggle('active')");
+console.log("element.classList.contains('btn')");
+
+const btn = document.querySelector('.btn');
+console.log("Button has 'btn' class:", btn.classList.contains('btn'));</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Modifying Styles</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Inline styles via style property
+// Properties use camelCase (backgroundColor, not background-color)
+
+console.log("Setting styles:");
+console.log("element.style.color = 'red'");
+console.log("element.style.backgroundColor = '#333'");
+console.log("element.style.fontSize = '18px'");
+console.log("element.style.display = 'none'");
+
+// Get computed styles (including CSS file styles)
+const header = document.querySelector('header');
+const styles = window.getComputedStyle(header);
+console.log("\nHeader background:", styles.backgroundColor);
+console.log("Header padding:", styles.padding);
+
+// Best practice: use classes for styling
+console.log("\nBetter approach: toggle classes!");
+console.log("element.classList.add('hidden')");
+console.log("element.classList.add('highlight')");</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>Best Practice:</strong> Instead of setting many inline styles, define CSS classes and toggle them with <code>classList</code>. This keeps styling in CSS where it belongs.
+                </div>
+            </section>
+
+            <section>
+                <h2>Creating and Removing Elements</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Creating elements
+console.log("Creating elements:");
+console.log("const div = document.createElement('div');");
+console.log("div.textContent = 'Hello!';");
+console.log("div.classList.add('my-class');");
+
+// Adding to the DOM
+console.log("\nAdding to DOM:");
+console.log("parent.appendChild(child);");
+console.log("parent.insertBefore(newNode, referenceNode);");
+console.log("element.insertAdjacentHTML('beforeend', html);");
+
+// Modern methods
+console.log("\nModern methods:");
+console.log("parent.append(child1, child2);");
+console.log("parent.prepend(child);");
+console.log("element.before(sibling);");
+console.log("element.after(sibling);");
+
+// Removing elements
+console.log("\nRemoving elements:");
+console.log("element.remove();");
+console.log("parent.removeChild(child);");
+
+// Practical: count current DOM elements
+const allElements = document.querySelectorAll('*');
+console.log("\nTotal elements on page:", allElements.length);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Traversing the DOM</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Navigate between elements
+const lessonContent = document.querySelector('.lesson-content');
+
+// Children
+console.log("Children:");
+console.log("First child:", lessonContent.firstElementChild?.tagName);
+console.log("Last child:", lessonContent.lastElementChild?.tagName);
+console.log("All children count:", lessonContent.children.length);
+
+// Parent
+console.log("\nParent:");
+const h2 = document.querySelector('h2');
+console.log("h2's parent:", h2.parentElement?.tagName);
+
+// Siblings
+console.log("\nSiblings:");
+const firstSection = lessonContent.firstElementChild;
+console.log("Next sibling:", firstSection?.nextElementSibling?.tagName);
+
+// Closest ancestor matching selector
+console.log("\nClosest:");
+const codeBlock = document.querySelector('.code-editor');
+console.log("Closest section:", codeBlock?.closest('section')?.tagName);
+console.log("Closest main:", codeBlock?.closest('main')?.tagName);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Live Demo Area</h2>
+                <p>This area demonstrates DOM manipulation in action:</p>
+
+                <div id="demo-area" style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                    <p id="demo-text">This text can be changed!</p>
+                    <button id="demo-btn" class="btn btn-primary btn-small">Click Me</button>
+                    <div id="demo-output" style="margin-top: 1rem; color: var(--success);"></div>
+                </div>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Interact with the demo above</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Get elements
+const text = document.getElementById('demo-text');
+const btn = document.getElementById('demo-btn');
+const output = document.getElementById('demo-output');
+
+// Change the text content
+text.textContent = "Hello from JavaScript!";
+text.style.color = "#e94560";
+text.style.fontWeight = "bold";
+
+// Show a message
+output.textContent = "Text was changed dynamically!";
+
+console.log("Modified the demo area above!");
+console.log("Check it out!");</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="challenge-box">
+                    <h4>Challenge: Build a List</h4>
+                    <p>Create a function that takes an array of items and adds them as list items to an unordered list. Use DOM methods to create and append elements.</p>
+
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <span>Your solution</span>
+                            <div>
+                                <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                                <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                            </div>
+                        </div>
+                        <textarea class="editor-textarea">// This challenge is conceptual - describe the steps
+
+function buildList(items) {
+    // 1. Create a <ul> element
+    // 2. Loop through items array
+    // 3. For each item, create an <li> element
+    // 4. Set the text content of the <li>
+    // 5. Append the <li> to the <ul>
+    // 6. Return the <ul>
+
+    console.log("Steps to build a list:");
+    console.log("1. const ul = document.createElement('ul');");
+    console.log("2. items.forEach(item => {");
+    console.log("     const li = document.createElement('li');");
+    console.log("     li.textContent = item;");
+    console.log("     ul.appendChild(li);");
+    console.log("   });");
+    console.log("3. return ul;");
+}
+
+const fruits = ["Apple", "Banana", "Cherry"];
+buildList(fruits);
+
+console.log("\nResult would be:");
+console.log("<ul>");
+console.log("  <li>Apple</li>");
+console.log("  <li>Banana</li>");
+console.log("  <li>Cherry</li>");
+console.log("</ul>");</textarea>
+                        <div class="editor-output">
+                            <div class="output-label">Output</div>
+                            <div class="output-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mark-complete">
+            <button class="btn btn-primary">Mark as Complete</button>
+        </div>
+        <div class="complete-status" style="display: none;">
+            ✓ Lesson Completed
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="objects.html" class="prev">← Objects</a>
+            <a href="events.html" class="next">Events →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>JS Learning - Learn JavaScript the interactive way</p>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/codeEditor.js"></script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects - JS Learning</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body data-lesson="objects">
+    <header>
+        <nav>
+            <a href="../../index.html" class="logo">JS<span>Learning</span></a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#basics">Basics</a></li>
+                <li><a href="../../index.html#intermediate">Intermediate</a></li>
+                <li><a href="../../index.html#quizzes">Quizzes</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        <div class="lesson-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> / <a href="../../index.html#intermediate">Intermediate</a> / Objects
+            </div>
+            <h1>Objects in JavaScript</h1>
+            <p>Learn to work with objects, properties, methods, and destructuring.</p>
+        </div>
+
+        <div class="lesson-content">
+            <section>
+                <h2>What are Objects?</h2>
+                <p>Objects are collections of key-value pairs. They're perfect for representing real-world entities with multiple properties.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Creating an object
+const person = {
+    name: "Alice",
+    age: 28,
+    city: "New York",
+    isStudent: false
+};
+
+console.log("Person:", person);
+
+// Accessing properties - dot notation
+console.log("Name:", person.name);
+console.log("Age:", person.age);
+
+// Accessing properties - bracket notation
+console.log("City:", person["city"]);
+
+// Bracket notation is useful for dynamic keys
+const key = "isStudent";
+console.log("Is Student:", person[key]);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Modifying Objects</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const car = {
+    brand: "Toyota",
+    model: "Camry",
+    year: 2020
+};
+
+console.log("Original:", car);
+
+// Update existing property
+car.year = 2023;
+console.log("After update:", car);
+
+// Add new property
+car.color = "blue";
+console.log("After adding color:", car);
+
+// Delete property
+delete car.model;
+console.log("After delete:", car);
+
+// Check if property exists
+console.log("Has 'brand':", "brand" in car);
+console.log("Has 'model':", "model" in car);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Object Methods</h2>
+                <p>Methods are functions stored as object properties.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const calculator = {
+    value: 0,
+
+    add(num) {
+        this.value += num;
+        return this;  // Enable chaining
+    },
+
+    subtract(num) {
+        this.value -= num;
+        return this;
+    },
+
+    multiply(num) {
+        this.value *= num;
+        return this;
+    },
+
+    reset() {
+        this.value = 0;
+        return this;
+    },
+
+    getResult() {
+        return this.value;
+    }
+};
+
+// Method chaining
+calculator.add(10).multiply(2).subtract(5);
+console.log("Result:", calculator.getResult());
+
+// Person with methods
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+
+    getFullName() {
+        return this.firstName + " " + this.lastName;
+    },
+
+    greet(greeting = "Hello") {
+        return greeting + ", I'm " + this.getFullName();
+    }
+};
+
+console.log(person.getFullName());
+console.log(person.greet("Hi"));</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>The 'this' keyword:</strong> Inside a method, <code>this</code> refers to the object the method belongs to.
+                </div>
+            </section>
+
+            <section>
+                <h2>Object Destructuring</h2>
+                <p>A convenient way to extract multiple properties from an object.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const user = {
+    id: 1,
+    username: "johndoe",
+    email: "john@example.com",
+    age: 30,
+    location: {
+        city: "Boston",
+        country: "USA"
+    }
+};
+
+// Basic destructuring
+const { username, email } = user;
+console.log("Username:", username);
+console.log("Email:", email);
+
+// Rename variables
+const { username: name, age: userAge } = user;
+console.log("Name:", name, "Age:", userAge);
+
+// Default values
+const { phone = "N/A" } = user;
+console.log("Phone:", phone);
+
+// Nested destructuring
+const { location: { city, country } } = user;
+console.log("Location:", city + ", " + country);
+
+// In function parameters
+function displayUser({ username, email, age }) {
+    console.log(`User: ${username}, Email: ${email}, Age: ${age}`);
+}
+
+displayUser(user);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Object Spread and Rest</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const defaults = {
+    theme: "dark",
+    fontSize: 14,
+    language: "en"
+};
+
+const userSettings = {
+    fontSize: 16,
+    showSidebar: true
+};
+
+// Spread: merge objects (later values override earlier)
+const settings = { ...defaults, ...userSettings };
+console.log("Merged settings:", settings);
+
+// Clone an object
+const clone = { ...defaults };
+clone.theme = "light";
+console.log("Original:", defaults);
+console.log("Clone:", clone);
+
+// Rest: collect remaining properties
+const { theme, ...otherSettings } = settings;
+console.log("Theme:", theme);
+console.log("Other settings:", otherSettings);
+
+// Add/override properties
+const enhanced = {
+    ...defaults,
+    theme: "light",
+    newProp: "value"
+};
+console.log("Enhanced:", enhanced);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Object Methods (Built-in)</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const product = {
+    name: "Laptop",
+    price: 999,
+    category: "Electronics"
+};
+
+// Object.keys() - get all keys
+const keys = Object.keys(product);
+console.log("Keys:", keys);
+
+// Object.values() - get all values
+const values = Object.values(product);
+console.log("Values:", values);
+
+// Object.entries() - get key-value pairs
+const entries = Object.entries(product);
+console.log("Entries:", entries);
+
+// Iterate with entries
+console.log("\nIterating:");
+for (const [key, value] of Object.entries(product)) {
+    console.log(`  ${key}: ${value}`);
+}
+
+// Object.assign() - merge objects
+const extra = { inStock: true };
+const merged = Object.assign({}, product, extra);
+console.log("\nMerged:", merged);
+
+// Object.freeze() - make immutable
+const frozen = Object.freeze({ x: 1 });
+frozen.x = 2;  // Silently fails
+console.log("Frozen:", frozen.x);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Computed Property Names</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Dynamic property names
+const propName = "score";
+const player = {
+    name: "Alice",
+    [propName]: 100  // Computed property
+};
+console.log("Player:", player);
+
+// Create object from arrays
+const keys = ["a", "b", "c"];
+const values = [1, 2, 3];
+
+const obj = {};
+keys.forEach((key, i) => {
+    obj[key] = values[i];
+});
+console.log("Built object:", obj);
+
+// Shorthand when variable name matches key
+const name = "Bob";
+const age = 25;
+const city = "NYC";
+
+// Old way
+const person1 = { name: name, age: age, city: city };
+
+// Shorthand
+const person2 = { name, age, city };
+console.log("Person:", person2);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="challenge-box">
+                    <h4>Challenge: User Profile Manager</h4>
+                    <p>Create a function that takes a user object and returns a formatted profile string. Use destructuring and handle missing fields gracefully.</p>
+
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <span>Your solution</span>
+                            <div>
+                                <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                                <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                            </div>
+                        </div>
+                        <textarea class="editor-textarea">function formatProfile(user) {
+    // Use destructuring with defaults
+    // Return a string like:
+    // "Name: John Doe | Age: 25 | Email: john@example.com"
+    // Use "N/A" for missing fields
+
+    return "";  // Your code here
+}
+
+// Test cases
+const user1 = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 25,
+    email: "john@example.com"
+};
+
+const user2 = {
+    firstName: "Jane"
+};
+
+console.log(formatProfile(user1));
+console.log(formatProfile(user2));</textarea>
+                        <div class="editor-output">
+                            <div class="output-label">Output</div>
+                            <div class="output-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mark-complete">
+            <button class="btn btn-primary">Mark as Complete</button>
+        </div>
+        <div class="complete-status" style="display: none;">
+            ✓ Lesson Completed
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="arrays.html" class="prev">← Arrays</a>
+            <a href="dom.html" class="next">DOM Manipulation →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>JS Learning - Learn JavaScript the interactive way</p>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/codeEditor.js"></script>
+</body>
+</html>

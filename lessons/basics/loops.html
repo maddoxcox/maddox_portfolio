@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops - JS Learning</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body data-lesson="loops">
+    <header>
+        <nav>
+            <a href="../../index.html" class="logo">JS<span>Learning</span></a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#basics">Basics</a></li>
+                <li><a href="../../index.html#intermediate">Intermediate</a></li>
+                <li><a href="../../index.html#quizzes">Quizzes</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        <div class="lesson-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> / <a href="../../index.html#basics">Basics</a> / Loops
+            </div>
+            <h1>Loops in JavaScript</h1>
+            <p>Learn how to repeat code efficiently using loops.</p>
+        </div>
+
+        <div class="lesson-content">
+            <section>
+                <h2>Why Use Loops?</h2>
+                <p>Loops allow you to execute a block of code multiple times. Instead of writing repetitive code, you can use a loop to automate the process.</p>
+
+                <div class="info-box">
+                    <strong>Pro Tip:</strong> Loops are essential for working with arrays and collections of data. Master them early!
+                </div>
+            </section>
+
+            <section>
+                <h2>The for Loop</h2>
+                <p>The <code>for</code> loop is the most common loop. It has three parts: initialization, condition, and increment.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Basic for loop
+// for (initialization; condition; increment)
+for (let i = 1; i <= 5; i++) {
+    console.log("Count:", i);
+}
+
+console.log("---");
+
+// Counting backwards
+for (let i = 5; i >= 1; i--) {
+    console.log("Countdown:", i);
+}</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Looping Through Arrays</h2>
+                <p>One of the most common uses of loops is iterating through arrays.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const fruits = ["apple", "banana", "cherry", "date"];
+
+// Traditional for loop with array
+console.log("Traditional for loop:");
+for (let i = 0; i < fruits.length; i++) {
+    console.log(i + ":", fruits[i]);
+}
+
+console.log("---");
+
+// for...of loop (simpler for arrays)
+console.log("for...of loop:");
+for (let fruit of fruits) {
+    console.log("Fruit:", fruit);
+}</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>The while Loop</h2>
+                <p>The <code>while</code> loop continues as long as a condition is true. Be careful to avoid infinite loops!</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// While loop
+let count = 1;
+
+while (count <= 5) {
+    console.log("While count:", count);
+    count++;  // Don't forget to increment!
+}
+
+console.log("---");
+
+// Practical example: find first even number
+const numbers = [1, 3, 5, 8, 9, 12];
+let index = 0;
+
+while (index < numbers.length) {
+    if (numbers[index] % 2 === 0) {
+        console.log("First even number:", numbers[index]);
+        break;  // Exit the loop early
+    }
+    index++;
+}</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+
+                <div class="info-box warning">
+                    <strong>Warning:</strong> Always ensure your while loop has a way to end. An infinite loop can crash your browser!
+                </div>
+            </section>
+
+            <section>
+                <h2>The do...while Loop</h2>
+                <p>The <code>do...while</code> loop is similar to while, but it always executes at least once.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// do...while always runs at least once
+let num = 10;
+
+do {
+    console.log("Number:", num);
+    num++;
+} while (num < 10);  // Condition is false, but it ran once!
+
+console.log("Final num:", num);
+
+console.log("---");
+
+// Useful for user input validation scenarios
+let attempts = 0;
+let password = "";
+
+do {
+    attempts++;
+    password = attempts < 3 ? "wrong" : "correct";
+    console.log("Attempt", attempts + ":", password);
+} while (password !== "correct" && attempts < 5);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>The forEach Method</h2>
+                <p>Arrays have a built-in <code>forEach</code> method that's a cleaner way to iterate.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const colors = ["red", "green", "blue", "yellow"];
+
+// forEach with arrow function
+colors.forEach(color => {
+    console.log("Color:", color);
+});
+
+console.log("---");
+
+// forEach with index
+colors.forEach((color, index) => {
+    console.log(index + 1 + ".", color);
+});
+
+console.log("---");
+
+// Practical example: calculate total
+const prices = [29.99, 9.99, 14.99, 4.99];
+let total = 0;
+
+prices.forEach(price => {
+    total += price;
+});
+
+console.log("Total: $" + total.toFixed(2));</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Break and Continue</h2>
+                <p>Use <code>break</code> to exit a loop early and <code>continue</code> to skip to the next iteration.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// break - exit the loop
+console.log("Using break:");
+for (let i = 1; i <= 10; i++) {
+    if (i === 5) {
+        console.log("Breaking at 5!");
+        break;
+    }
+    console.log(i);
+}
+
+console.log("---");
+
+// continue - skip current iteration
+console.log("Using continue (skip even numbers):");
+for (let i = 1; i <= 10; i++) {
+    if (i % 2 === 0) {
+        continue;  // Skip even numbers
+    }
+    console.log(i);
+}</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="challenge-box">
+                    <h4>Challenge: FizzBuzz</h4>
+                    <p>Write a loop that prints numbers from 1 to 20. But for multiples of 3, print "Fizz" instead. For multiples of 5, print "Buzz". For multiples of both 3 and 5, print "FizzBuzz".</p>
+
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <span>Your solution</span>
+                            <div>
+                                <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                                <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                            </div>
+                        </div>
+                        <textarea class="editor-textarea">// FizzBuzz challenge
+for (let i = 1; i <= 20; i++) {
+    // Your code here
+    // Hint: Check divisibility using the modulo operator (%)
+    // i % 3 === 0 means i is divisible by 3
+
+    console.log(i);  // Replace this with your logic
+}</textarea>
+                        <div class="editor-output">
+                            <div class="output-label">Output</div>
+                            <div class="output-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mark-complete">
+            <button class="btn btn-primary">Mark as Complete</button>
+        </div>
+        <div class="complete-status" style="display: none;">
+            ✓ Lesson Completed
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="functions.html" class="prev">← Functions</a>
+            <a href="conditionals.html" class="next">Conditionals →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>JS Learning - Learn JavaScript the interactive way</p>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/codeEditor.js"></script>
+</body>
+</html>

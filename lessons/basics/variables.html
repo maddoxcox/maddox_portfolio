@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables - JS Learning</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body data-lesson="variables">
+    <header>
+        <nav>
+            <a href="../../index.html" class="logo">JS<span>Learning</span></a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#basics">Basics</a></li>
+                <li><a href="../../index.html#intermediate">Intermediate</a></li>
+                <li><a href="../../index.html#quizzes">Quizzes</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        <div class="lesson-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> / <a href="../../index.html#basics">Basics</a> / Variables
+            </div>
+            <h1>Variables in JavaScript</h1>
+            <p>Learn how to store and manage data using variables.</p>
+        </div>
+
+        <div class="lesson-content">
+            <section>
+                <h2>What are Variables?</h2>
+                <p>Variables are containers for storing data values. In JavaScript, you can declare variables using three keywords: <code>var</code>, <code>let</code>, and <code>const</code>.</p>
+
+                <div class="info-box">
+                    <strong>Modern JavaScript:</strong> Use <code>let</code> and <code>const</code> instead of <code>var</code>. They provide better scoping and help prevent bugs.
+                </div>
+            </section>
+
+            <section>
+                <h2>Declaring Variables</h2>
+
+                <h3>Using let</h3>
+                <p>Use <code>let</code> when you need to reassign a variable later.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">let message = "Hello, World!";
+console.log(message);
+
+// You can reassign let variables
+message = "Hello, JavaScript!";
+console.log(message);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+
+                <h3>Using const</h3>
+                <p>Use <code>const</code> for values that should never be reassigned.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const PI = 3.14159;
+const appName = "JS Learning";
+
+console.log("PI:", PI);
+console.log("App:", appName);
+
+// Try uncommenting the line below - it will cause an error!
+// PI = 3.14;</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+
+                <h3>Using var (Legacy)</h3>
+                <p><code>var</code> is the old way to declare variables. It has function scope instead of block scope, which can lead to unexpected behavior.</p>
+
+                <div class="code-block">
+                    <div class="code-header"><span class="language">JavaScript</span></div>
+                    <pre><code><span class="keyword">var</span> oldStyle = <span class="string">"I'm function-scoped"</span>;
+<span class="comment">// Avoid using var in modern JavaScript</span></code></pre>
+                </div>
+            </section>
+
+            <section>
+                <h2>Data Types</h2>
+                <p>JavaScript has several data types:</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Explore data types</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// String - text data
+let name = "Alice";
+console.log("String:", name, "- Type:", typeof name);
+
+// Number - numeric data
+let age = 25;
+let price = 19.99;
+console.log("Number:", age, "- Type:", typeof age);
+
+// Boolean - true or false
+let isActive = true;
+console.log("Boolean:", isActive, "- Type:", typeof isActive);
+
+// Undefined - no value assigned
+let unknown;
+console.log("Undefined:", unknown, "- Type:", typeof unknown);
+
+// Null - intentionally empty
+let empty = null;
+console.log("Null:", empty, "- Type:", typeof empty);
+
+// Array - list of values
+let colors = ["red", "green", "blue"];
+console.log("Array:", colors);
+
+// Object - key-value pairs
+let person = { name: "Bob", age: 30 };
+console.log("Object:", person);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Variable Naming Rules</h2>
+                <ul>
+                    <li>Names can contain letters, digits, underscores, and dollar signs</li>
+                    <li>Names must begin with a letter, underscore (_), or dollar sign ($)</li>
+                    <li>Names are case-sensitive (<code>myVar</code> and <code>myvar</code> are different)</li>
+                    <li>Reserved words (like <code>let</code>, <code>const</code>, <code>function</code>) cannot be used as names</li>
+                </ul>
+
+                <div class="code-block">
+                    <div class="code-header"><span class="language">JavaScript</span></div>
+                    <pre><code><span class="comment">// Good variable names</span>
+<span class="keyword">let</span> userName = <span class="string">"John"</span>;
+<span class="keyword">let</span> user_age = <span class="number">25</span>;
+<span class="keyword">let</span> $price = <span class="number">9.99</span>;
+<span class="keyword">let</span> _private = <span class="string">"hidden"</span>;
+
+<span class="comment">// Use camelCase for multi-word names</span>
+<span class="keyword">let</span> firstName = <span class="string">"Jane"</span>;
+<span class="keyword">let</span> totalItemCount = <span class="number">42</span>;</code></pre>
+                </div>
+            </section>
+
+            <section>
+                <div class="challenge-box">
+                    <h4>Challenge: Create Your Variables</h4>
+                    <p>Create variables to store your name, age, and a boolean indicating if you like JavaScript. Then log them to the console.</p>
+
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <span>Your solution</span>
+                            <div>
+                                <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                                <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                            </div>
+                        </div>
+                        <textarea class="editor-textarea">// Create your variables here
+let myName = "";
+let myAge = 0;
+let likesJavaScript = true;
+
+// Log your variables
+console.log("Name:", myName);
+console.log("Age:", myAge);
+console.log("Likes JS:", likesJavaScript);</textarea>
+                        <div class="editor-output">
+                            <div class="output-label">Output</div>
+                            <div class="output-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mark-complete">
+            <button class="btn btn-primary">Mark as Complete</button>
+        </div>
+        <div class="complete-status" style="display: none;">
+            ✓ Lesson Completed
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="../../index.html" class="prev">← Back to Home</a>
+            <a href="functions.html" class="next">Functions →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>JS Learning - Learn JavaScript the interactive way</p>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/codeEditor.js"></script>
+</body>
+</html>

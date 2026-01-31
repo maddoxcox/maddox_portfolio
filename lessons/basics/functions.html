@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions - JS Learning</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body data-lesson="functions">
+    <header>
+        <nav>
+            <a href="../../index.html" class="logo">JS<span>Learning</span></a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#basics">Basics</a></li>
+                <li><a href="../../index.html#intermediate">Intermediate</a></li>
+                <li><a href="../../index.html#quizzes">Quizzes</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        <div class="lesson-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> / <a href="../../index.html#basics">Basics</a> / Functions
+            </div>
+            <h1>Functions in JavaScript</h1>
+            <p>Learn how to create reusable blocks of code with functions.</p>
+        </div>
+
+        <div class="lesson-content">
+            <section>
+                <h2>What are Functions?</h2>
+                <p>Functions are reusable blocks of code that perform a specific task. They help you organize your code, avoid repetition, and make your programs easier to understand and maintain.</p>
+
+                <div class="info-box">
+                    <strong>Key Concept:</strong> Functions follow the DRY principle - Don't Repeat Yourself. Write once, use many times!
+                </div>
+            </section>
+
+            <section>
+                <h2>Function Declarations</h2>
+                <p>The most common way to create a function is using a function declaration.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Function declaration
+function greet(name) {
+    return "Hello, " + name + "!";
+}
+
+// Calling the function
+console.log(greet("Alice"));
+console.log(greet("Bob"));
+
+// Function with multiple parameters
+function add(a, b) {
+    return a + b;
+}
+
+console.log("5 + 3 =", add(5, 3));</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Function Expressions</h2>
+                <p>Functions can also be stored in variables. This is called a function expression.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Function expression
+const multiply = function(a, b) {
+    return a * b;
+};
+
+console.log("4 × 7 =", multiply(4, 7));
+
+// Functions can be passed to other functions!
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(function(num) {
+    return num * 2;
+});
+
+console.log("Doubled:", doubled);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Arrow Functions</h2>
+                <p>Arrow functions provide a shorter syntax for writing functions. They're especially useful for simple operations.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Arrow function syntax
+const square = (x) => x * x;
+console.log("5² =", square(5));
+
+// Arrow function with multiple parameters
+const subtract = (a, b) => a - b;
+console.log("10 - 4 =", subtract(10, 4));
+
+// Arrow function with function body
+const greetPerson = (name) => {
+    const greeting = "Welcome, " + name + "!";
+    return greeting;
+};
+console.log(greetPerson("Charlie"));
+
+// Using arrow functions with arrays
+const nums = [1, 2, 3, 4, 5];
+const squared = nums.map(n => n * n);
+console.log("Squared:", squared);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Parameters and Arguments</h2>
+                <p>Functions can accept parameters (inputs) and return values (outputs).</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Default parameters
+function greet(name = "Guest") {
+    return "Hello, " + name + "!";
+}
+
+console.log(greet());        // Uses default
+console.log(greet("Alice")); // Uses provided value
+
+// Rest parameters - accept any number of arguments
+function sum(...numbers) {
+    let total = 0;
+    for (let num of numbers) {
+        total += num;
+    }
+    return total;
+}
+
+console.log("Sum:", sum(1, 2, 3, 4, 5));
+console.log("Sum:", sum(10, 20));</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Return Values</h2>
+                <p>Functions can return a value using the <code>return</code> statement. If no return is specified, the function returns <code>undefined</code>.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Function that returns a value
+function calculateArea(width, height) {
+    return width * height;
+}
+
+const area = calculateArea(5, 10);
+console.log("Area:", area);
+
+// Function without return (returns undefined)
+function logMessage(msg) {
+    console.log("Message:", msg);
+    // No return statement
+}
+
+const result = logMessage("Hello!");
+console.log("Return value:", result);
+
+// Early return for validation
+function divide(a, b) {
+    if (b === 0) {
+        return "Cannot divide by zero!";
+    }
+    return a / b;
+}
+
+console.log("10 / 2 =", divide(10, 2));
+console.log("10 / 0 =", divide(10, 0));</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="challenge-box">
+                    <h4>Challenge: Create a Calculator</h4>
+                    <p>Create a function called <code>calculate</code> that takes three parameters: two numbers and an operator (+, -, *, /). Return the result of the operation.</p>
+
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <span>Your solution</span>
+                            <div>
+                                <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                                <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                            </div>
+                        </div>
+                        <textarea class="editor-textarea">// Create your calculate function here
+function calculate(num1, num2, operator) {
+    // Your code here
+    // Hint: use if/else or switch to check the operator
+}
+
+// Test your function
+console.log("5 + 3 =", calculate(5, 3, "+"));
+console.log("10 - 4 =", calculate(10, 4, "-"));
+console.log("6 * 7 =", calculate(6, 7, "*"));
+console.log("20 / 5 =", calculate(20, 5, "/"));</textarea>
+                        <div class="editor-output">
+                            <div class="output-label">Output</div>
+                            <div class="output-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mark-complete">
+            <button class="btn btn-primary">Mark as Complete</button>
+        </div>
+        <div class="complete-status" style="display: none;">
+            ✓ Lesson Completed
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="variables.html" class="prev">← Variables</a>
+            <a href="loops.html" class="next">Loops →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>JS Learning - Learn JavaScript the interactive way</p>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/codeEditor.js"></script>
+</body>
+</html>

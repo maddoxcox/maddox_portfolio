@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays - JS Learning</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body data-lesson="arrays">
+    <header>
+        <nav>
+            <a href="../../index.html" class="logo">JS<span>Learning</span></a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#basics">Basics</a></li>
+                <li><a href="../../index.html#intermediate">Intermediate</a></li>
+                <li><a href="../../index.html#quizzes">Quizzes</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        <div class="lesson-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> / <a href="../../index.html#intermediate">Intermediate</a> / Arrays
+            </div>
+            <h1>Arrays in JavaScript</h1>
+            <p>Master array methods for powerful data manipulation.</p>
+        </div>
+
+        <div class="lesson-content">
+            <section>
+                <h2>Array Basics Review</h2>
+                <p>Arrays are ordered collections of values. They can hold any type of data and are zero-indexed.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Creating arrays
+const fruits = ["apple", "banana", "cherry"];
+const numbers = [1, 2, 3, 4, 5];
+const mixed = [1, "hello", true, null];
+
+// Accessing elements
+console.log("First fruit:", fruits[0]);
+console.log("Last fruit:", fruits[fruits.length - 1]);
+
+// Array length
+console.log("Number of fruits:", fruits.length);
+
+// Modifying elements
+fruits[1] = "blueberry";
+console.log("Modified array:", fruits);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Adding and Removing Elements</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const arr = [1, 2, 3];
+console.log("Original:", arr);
+
+// push - add to end
+arr.push(4);
+console.log("After push(4):", arr);
+
+// pop - remove from end
+const popped = arr.pop();
+console.log("Popped:", popped);
+console.log("After pop:", arr);
+
+// unshift - add to beginning
+arr.unshift(0);
+console.log("After unshift(0):", arr);
+
+// shift - remove from beginning
+const shifted = arr.shift();
+console.log("Shifted:", shifted);
+console.log("After shift:", arr);
+
+// splice - add/remove at any position
+arr.splice(1, 0, 1.5);  // At index 1, remove 0, insert 1.5
+console.log("After splice:", arr);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>The map() Method</h2>
+                <p>Creates a new array by transforming each element.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const numbers = [1, 2, 3, 4, 5];
+
+// Double each number
+const doubled = numbers.map(num => num * 2);
+console.log("Doubled:", doubled);
+
+// Square each number
+const squared = numbers.map(num => num * num);
+console.log("Squared:", squared);
+
+// Transform strings
+const names = ["alice", "bob", "charlie"];
+const capitalized = names.map(name =>
+    name.charAt(0).toUpperCase() + name.slice(1)
+);
+console.log("Capitalized:", capitalized);
+
+// Map with objects
+const users = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 }
+];
+const userNames = users.map(user => user.name);
+console.log("User names:", userNames);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>Key Point:</strong> <code>map()</code> always returns a new array with the same length. It doesn't modify the original array.
+                </div>
+            </section>
+
+            <section>
+                <h2>The filter() Method</h2>
+                <p>Creates a new array with elements that pass a test.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// Get even numbers
+const evens = numbers.filter(num => num % 2 === 0);
+console.log("Even numbers:", evens);
+
+// Get numbers greater than 5
+const greaterThan5 = numbers.filter(num => num > 5);
+console.log("Greater than 5:", greaterThan5);
+
+// Filter objects
+const products = [
+    { name: "Laptop", price: 999, inStock: true },
+    { name: "Phone", price: 699, inStock: false },
+    { name: "Tablet", price: 399, inStock: true },
+    { name: "Watch", price: 299, inStock: true }
+];
+
+const available = products.filter(p => p.inStock);
+console.log("In stock:", available.map(p => p.name));
+
+const affordable = products.filter(p => p.price < 500);
+console.log("Under $500:", affordable.map(p => p.name));</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>The reduce() Method</h2>
+                <p>Reduces an array to a single value by applying a function to each element.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const numbers = [1, 2, 3, 4, 5];
+
+// Sum all numbers
+const sum = numbers.reduce((acc, num) => acc + num, 0);
+console.log("Sum:", sum);
+
+// Find maximum
+const max = numbers.reduce((acc, num) => num > acc ? num : acc, numbers[0]);
+console.log("Max:", max);
+
+// Count occurrences
+const fruits = ["apple", "banana", "apple", "cherry", "banana", "apple"];
+const counts = fruits.reduce((acc, fruit) => {
+    acc[fruit] = (acc[fruit] || 0) + 1;
+    return acc;
+}, {});
+console.log("Counts:", counts);
+
+// Flatten nested arrays
+const nested = [[1, 2], [3, 4], [5, 6]];
+const flat = nested.reduce((acc, arr) => acc.concat(arr), []);
+console.log("Flattened:", flat);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>Understanding reduce:</strong> The first parameter is the accumulator (running total), the second is the current element. The second argument to reduce() is the initial value.
+                </div>
+            </section>
+
+            <section>
+                <h2>Finding Elements</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const numbers = [1, 2, 3, 4, 5, 3, 6];
+
+// find - returns first matching element
+const firstEven = numbers.find(num => num % 2 === 0);
+console.log("First even:", firstEven);
+
+// findIndex - returns index of first match
+const firstEvenIndex = numbers.findIndex(num => num % 2 === 0);
+console.log("First even index:", firstEvenIndex);
+
+// indexOf - find index of specific value
+console.log("Index of 3:", numbers.indexOf(3));
+console.log("Last index of 3:", numbers.lastIndexOf(3));
+
+// includes - check if value exists
+console.log("Includes 5:", numbers.includes(5));
+console.log("Includes 10:", numbers.includes(10));
+
+// some - check if ANY element passes test
+const hasEven = numbers.some(num => num % 2 === 0);
+console.log("Has even number:", hasEven);
+
+// every - check if ALL elements pass test
+const allPositive = numbers.every(num => num > 0);
+console.log("All positive:", allPositive);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Sorting and Reversing</h2>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">// Sorting strings (alphabetical)
+const fruits = ["cherry", "apple", "banana"];
+console.log("Sorted:", [...fruits].sort());
+
+// Sorting numbers (needs compare function!)
+const numbers = [10, 5, 8, 1, 7, 2];
+console.log("Wrong sort:", [...numbers].sort());  // Sorts as strings!
+console.log("Correct sort:", [...numbers].sort((a, b) => a - b));
+console.log("Descending:", [...numbers].sort((a, b) => b - a));
+
+// Sorting objects
+const users = [
+    { name: "Charlie", age: 25 },
+    { name: "Alice", age: 30 },
+    { name: "Bob", age: 20 }
+];
+
+const byAge = [...users].sort((a, b) => a.age - b.age);
+console.log("By age:", byAge.map(u => u.name + ":" + u.age));
+
+const byName = [...users].sort((a, b) => a.name.localeCompare(b.name));
+console.log("By name:", byName.map(u => u.name));
+
+// Reverse
+console.log("Reversed:", [...numbers].reverse());</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+
+                <div class="info-box warning">
+                    <strong>Warning:</strong> <code>sort()</code> and <code>reverse()</code> modify the original array! Use spread <code>[...arr]</code> to create a copy first.
+                </div>
+            </section>
+
+            <section>
+                <div class="challenge-box">
+                    <h4>Challenge: Data Processing</h4>
+                    <p>Given an array of products, find all products that are in stock and under $50, then calculate the total value of those products.</p>
+
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <span>Your solution</span>
+                            <div>
+                                <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                                <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                            </div>
+                        </div>
+                        <textarea class="editor-textarea">const products = [
+    { name: "Book", price: 15, inStock: true },
+    { name: "Pen", price: 2, inStock: true },
+    { name: "Laptop", price: 999, inStock: true },
+    { name: "Notebook", price: 8, inStock: false },
+    { name: "Mouse", price: 25, inStock: true },
+    { name: "Keyboard", price: 75, inStock: true }
+];
+
+// 1. Filter products: in stock AND price < 50
+const affordable = products;  // Replace with your filter
+
+// 2. Get just the names
+const names = [];  // Use map
+
+// 3. Calculate total price
+const total = 0;  // Use reduce
+
+console.log("Affordable products:", names);
+console.log("Total value: $" + total);</textarea>
+                        <div class="editor-output">
+                            <div class="output-label">Output</div>
+                            <div class="output-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mark-complete">
+            <button class="btn btn-primary">Mark as Complete</button>
+        </div>
+        <div class="complete-status" style="display: none;">
+            ✓ Lesson Completed
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="../basics/conditionals.html" class="prev">← Conditionals</a>
+            <a href="objects.html" class="next">Objects →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>JS Learning - Learn JavaScript the interactive way</p>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/codeEditor.js"></script>
+</body>
+</html>

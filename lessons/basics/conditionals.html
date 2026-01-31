@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditionals - JS Learning</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body data-lesson="conditionals">
+    <header>
+        <nav>
+            <a href="../../index.html" class="logo">JS<span>Learning</span></a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#basics">Basics</a></li>
+                <li><a href="../../index.html#intermediate">Intermediate</a></li>
+                <li><a href="../../index.html#quizzes">Quizzes</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        <div class="lesson-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> / <a href="../../index.html#basics">Basics</a> / Conditionals
+            </div>
+            <h1>Conditionals in JavaScript</h1>
+            <p>Learn how to make decisions in your code with conditional statements.</p>
+        </div>
+
+        <div class="lesson-content">
+            <section>
+                <h2>What are Conditionals?</h2>
+                <p>Conditionals allow your code to make decisions based on certain conditions. They're the foundation of program logic - "if this, then do that."</p>
+
+                <div class="info-box">
+                    <strong>Key Concept:</strong> Conditionals evaluate expressions to <code>true</code> or <code>false</code> (boolean values) and execute different code blocks accordingly.
+                </div>
+            </section>
+
+            <section>
+                <h2>The if Statement</h2>
+                <p>The simplest conditional. If the condition is true, the code block runs.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const temperature = 75;
+
+if (temperature > 70) {
+    console.log("It's a warm day!");
+}
+
+// Try changing the temperature to see different results
+const age = 18;
+
+if (age >= 18) {
+    console.log("You can vote!");
+}
+
+if (age >= 21) {
+    console.log("You can drink alcohol in the US.");
+}</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>if...else Statements</h2>
+                <p>Use <code>else</code> to specify what happens when the condition is false.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const hour = 14;  // 2 PM in 24-hour format
+
+if (hour < 12) {
+    console.log("Good morning!");
+} else {
+    console.log("Good afternoon!");
+}
+
+// Checking login status
+const isLoggedIn = false;
+
+if (isLoggedIn) {
+    console.log("Welcome back!");
+} else {
+    console.log("Please log in.");
+}</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>if...else if...else</h2>
+                <p>Chain multiple conditions together for more complex logic.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const score = 85;
+let grade;
+
+if (score >= 90) {
+    grade = "A";
+} else if (score >= 80) {
+    grade = "B";
+} else if (score >= 70) {
+    grade = "C";
+} else if (score >= 60) {
+    grade = "D";
+} else {
+    grade = "F";
+}
+
+console.log("Score:", score);
+console.log("Grade:", grade);
+
+// Time of day greeting
+const hour = 19;
+
+if (hour < 12) {
+    console.log("Good morning!");
+} else if (hour < 17) {
+    console.log("Good afternoon!");
+} else if (hour < 21) {
+    console.log("Good evening!");
+} else {
+    console.log("Good night!");
+}</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Comparison Operators</h2>
+                <p>Use these operators to compare values in conditions:</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const a = 5;
+const b = "5";
+
+// Equality (==) - compares values, allows type coercion
+console.log("5 == '5':", a == b);    // true
+
+// Strict equality (===) - compares values AND types
+console.log("5 === '5':", a === b);  // false
+
+// Inequality
+console.log("5 != 3:", 5 != 3);      // true
+console.log("5 !== '5':", a !== b);  // true
+
+// Comparison
+console.log("10 > 5:", 10 > 5);      // true
+console.log("10 < 5:", 10 < 5);      // false
+console.log("5 >= 5:", 5 >= 5);      // true
+console.log("5 <= 4:", 5 <= 4);      // false</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+
+                <div class="info-box warning">
+                    <strong>Best Practice:</strong> Always use <code>===</code> and <code>!==</code> (strict equality) to avoid unexpected type coercion bugs.
+                </div>
+            </section>
+
+            <section>
+                <h2>Logical Operators</h2>
+                <p>Combine multiple conditions using AND (<code>&&</code>), OR (<code>||</code>), and NOT (<code>!</code>).</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const age = 25;
+const hasLicense = true;
+const hasInsurance = true;
+
+// AND (&&) - both must be true
+if (age >= 16 && hasLicense) {
+    console.log("You can drive!");
+}
+
+// OR (||) - at least one must be true
+const isWeekend = false;
+const isHoliday = true;
+
+if (isWeekend || isHoliday) {
+    console.log("No work today!");
+}
+
+// NOT (!) - inverts the boolean
+const isRaining = false;
+
+if (!isRaining) {
+    console.log("No umbrella needed!");
+}
+
+// Combining operators
+if (age >= 18 && hasLicense && hasInsurance) {
+    console.log("You're fully legal to drive!");
+}</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>The Switch Statement</h2>
+                <p>Use <code>switch</code> when you need to compare a value against many options.</p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const day = "Monday";
+
+switch (day) {
+    case "Monday":
+        console.log("Start of the work week");
+        break;
+    case "Tuesday":
+    case "Wednesday":
+    case "Thursday":
+        console.log("Midweek");
+        break;
+    case "Friday":
+        console.log("TGIF!");
+        break;
+    case "Saturday":
+    case "Sunday":
+        console.log("Weekend!");
+        break;
+    default:
+        console.log("Invalid day");
+}
+
+// Using switch for a simple menu
+const choice = 2;
+
+switch (choice) {
+    case 1:
+        console.log("You selected: New Game");
+        break;
+    case 2:
+        console.log("You selected: Load Game");
+        break;
+    case 3:
+        console.log("You selected: Settings");
+        break;
+    default:
+        console.log("Invalid choice");
+}</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>The Ternary Operator</h2>
+                <p>A shorthand for simple if...else statements: <code>condition ? valueIfTrue : valueIfFalse</code></p>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Try it yourself</span>
+                        <div>
+                            <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                            <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea">const age = 20;
+
+// Traditional if...else
+let status1;
+if (age >= 18) {
+    status1 = "adult";
+} else {
+    status1 = "minor";
+}
+console.log("Traditional:", status1);
+
+// Ternary operator - same result, one line!
+const status2 = age >= 18 ? "adult" : "minor";
+console.log("Ternary:", status2);
+
+// Practical examples
+const score = 75;
+const result = score >= 60 ? "Pass" : "Fail";
+console.log("Result:", result);
+
+const hour = 14;
+const greeting = hour < 12 ? "Good morning" : "Good afternoon";
+console.log(greeting);
+
+// Nested ternary (use sparingly!)
+const grade = score >= 90 ? "A" : score >= 80 ? "B" : score >= 70 ? "C" : "F";
+console.log("Grade:", grade);</textarea>
+                    <div class="editor-output">
+                        <div class="output-label">Output</div>
+                        <div class="output-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="challenge-box">
+                    <h4>Challenge: Age Validator</h4>
+                    <p>Create a function that takes an age and returns:</p>
+                    <ul>
+                        <li>"Child" if age is under 13</li>
+                        <li>"Teenager" if age is 13-19</li>
+                        <li>"Adult" if age is 20-64</li>
+                        <li>"Senior" if age is 65 or older</li>
+                    </ul>
+
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <span>Your solution</span>
+                            <div>
+                                <button class="btn btn-small btn-secondary reset-btn">Reset</button>
+                                <button class="btn btn-small btn-primary run-btn">Run Code</button>
+                            </div>
+                        </div>
+                        <textarea class="editor-textarea">function getAgeGroup(age) {
+    // Your code here
+    // Use if...else if...else statements
+
+    return "Unknown";  // Replace with your logic
+}
+
+// Test your function
+console.log("Age 5:", getAgeGroup(5));
+console.log("Age 15:", getAgeGroup(15));
+console.log("Age 30:", getAgeGroup(30));
+console.log("Age 70:", getAgeGroup(70));</textarea>
+                        <div class="editor-output">
+                            <div class="output-label">Output</div>
+                            <div class="output-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mark-complete">
+            <button class="btn btn-primary">Mark as Complete</button>
+        </div>
+        <div class="complete-status" style="display: none;">
+            ✓ Lesson Completed
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="loops.html" class="prev">← Loops</a>
+            <a href="../intermediate/arrays.html" class="next">Arrays →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>JS Learning - Learn JavaScript the interactive way</p>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/codeEditor.js"></script>
+</body>
+</html>
