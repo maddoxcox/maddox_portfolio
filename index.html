@@ -3,118 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Learning - Master JavaScript Fundamentals</title>
+    <title>Maddox Cox — Projects</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .projects-section {
+            padding: 3rem 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .project-card .preview {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+        }
+
+        .project-card .details {
+            padding: 1.25rem;
+        }
+
+        .project-card .details h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-card .details p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card .tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            background-color: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .project-card .links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .project-card .links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .portfolio-hero {
+            text-align: center;
+            padding: 4rem 0 2rem;
+        }
+
+        .portfolio-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-hero p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav>
-            <a href="index.html" class="logo">JS<span>Learning</span></a>
+            <a href="index.html" class="logo">Maddox<span>Cox</span></a>
             <ul class="nav-links">
-                <li><a href="#basics">Basics</a></li>
-                <li><a href="#intermediate">Intermediate</a></li>
-                <li><a href="#quizzes">Quizzes</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="https://github.com/maddoxcox" target="_blank">GitHub</a></li>
             </ul>
             <button class="mobile-menu">☰</button>
         </nav>
     </header>
 
     <main>
-        <section class="hero">
+        <section class="portfolio-hero">
             <div class="container">
-                <h1>Learn JavaScript</h1>
-                <p>Master the fundamentals of JavaScript with interactive tutorials, hands-on exercises, and quizzes. Start your journey to becoming a JavaScript developer!</p>
+                <h1>Maddox Cox</h1>
+                <p>CS student building things with code and AI.</p>
             </div>
         </section>
 
-        <div class="container">
-            <div class="progress-container">
-                <h3>Your Progress</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 0%"></div>
-                </div>
-                <div class="progress-text">
-                    <span>Keep learning!</span>
-                    <span>0% Complete</span>
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+
+                    <div class="project-card">
+                        <div class="preview">🎓</div>
+                        <div class="details">
+                            <h3>GPA Calculator</h3>
+                            <p>Enter letter grades or percentages, get your GPA. Supports A+ through F with +/- modifiers.</p>
+                            <div class="tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Interactive</span>
+                            </div>
+                            <div class="links">
+                                <a href="projects/gpa-calculator/index.html" class="btn btn-small btn-primary">Use It</a>
+                                <a href="https://github.com/maddoxcox/ai-club-learning/blob/main/month-1-foundations/day-01-error-handler/grade_calculator.py" target="_blank" class="btn btn-small btn-secondary">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="preview">💻</div>
+                        <div class="details">
+                            <h3>JS Learning</h3>
+                            <p>Interactive JavaScript lessons with a built-in code editor. Covers basics through intermediate topics.</p>
+                            <div class="tags">
+                                <span class="tag">HTML/CSS/JS</span>
+                                <span class="tag">Educational</span>
+                            </div>
+                            <div class="links">
+                                <a href="lessons/basics/variables.html" class="btn btn-small btn-primary">View Lessons</a>
+                                <a href="https://github.com/maddoxcox/claudetest1" target="_blank" class="btn btn-small btn-secondary">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <section id="basics" class="topics-section">
-                <h2>Basics</h2>
-                <p>Start here if you're new to JavaScript. Learn the fundamental concepts that form the foundation of the language.</p>
-                <div class="topics-grid">
-                    <a href="lessons/basics/variables.html" class="topic-card" data-lesson="variables">
-                        <span class="difficulty beginner">Beginner</span>
-                        <h3>Variables</h3>
-                        <p>Learn about let, const, var, and different data types in JavaScript.</p>
-                    </a>
-                    <a href="lessons/basics/functions.html" class="topic-card" data-lesson="functions">
-                        <span class="difficulty beginner">Beginner</span>
-                        <h3>Functions</h3>
-                        <p>Master function declarations, expressions, and arrow functions.</p>
-                    </a>
-                    <a href="lessons/basics/loops.html" class="topic-card" data-lesson="loops">
-                        <span class="difficulty beginner">Beginner</span>
-                        <h3>Loops</h3>
-                        <p>Understand for loops, while loops, and iteration methods.</p>
-                    </a>
-                    <a href="lessons/basics/conditionals.html" class="topic-card" data-lesson="conditionals">
-                        <span class="difficulty beginner">Beginner</span>
-                        <h3>Conditionals</h3>
-                        <p>Learn if/else statements, switch cases, and ternary operators.</p>
-                    </a>
-                </div>
-            </section>
-
-            <section id="intermediate" class="topics-section">
-                <h2>Intermediate</h2>
-                <p>Ready to level up? These topics will take your JavaScript skills to the next level.</p>
-                <div class="topics-grid">
-                    <a href="lessons/intermediate/arrays.html" class="topic-card" data-lesson="arrays">
-                        <span class="difficulty intermediate">Intermediate</span>
-                        <h3>Arrays</h3>
-                        <p>Master array methods like map, filter, reduce, and more.</p>
-                    </a>
-                    <a href="lessons/intermediate/objects.html" class="topic-card" data-lesson="objects">
-                        <span class="difficulty intermediate">Intermediate</span>
-                        <h3>Objects</h3>
-                        <p>Deep dive into object properties, methods, and destructuring.</p>
-                    </a>
-                    <a href="lessons/intermediate/dom.html" class="topic-card" data-lesson="dom">
-                        <span class="difficulty intermediate">Intermediate</span>
-                        <h3>DOM Manipulation</h3>
-                        <p>Learn to select and modify HTML elements with JavaScript.</p>
-                    </a>
-                    <a href="lessons/intermediate/events.html" class="topic-card" data-lesson="events">
-                        <span class="difficulty intermediate">Intermediate</span>
-                        <h3>Events</h3>
-                        <p>Handle user interactions with event listeners and event objects.</p>
-                    </a>
-                </div>
-            </section>
-
-            <section id="quizzes" class="topics-section">
-                <h2>Test Your Knowledge</h2>
-                <p>Ready to put your skills to the test? Take our quizzes to see how much you've learned!</p>
-                <div class="topics-grid">
-                    <a href="lessons/quizzes/basics-quiz.html" class="topic-card" data-lesson="basics-quiz">
-                        <span class="difficulty beginner">Beginner</span>
-                        <h3>Basics Quiz</h3>
-                        <p>Test your understanding of JavaScript fundamentals with 10 questions.</p>
-                    </a>
-                    <a href="lessons/quizzes/intermediate-quiz.html" class="topic-card" data-lesson="intermediate-quiz">
-                        <span class="difficulty intermediate">Intermediate</span>
-                        <h3>Intermediate Quiz</h3>
-                        <p>Challenge yourself with advanced concepts in this 10-question quiz.</p>
-                    </a>
-                </div>
-            </section>
-        </div>
+        </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>JS Learning - Learn JavaScript the interactive way</p>
+            <p>Maddox Cox — CS Student</p>
         </div>
     </footer>
 

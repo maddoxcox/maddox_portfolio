@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator — Maddox Cox</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .calc-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        .calc-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .calc-header h1 {
+            margin-bottom: 0.25rem;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-row input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-row input:focus {
+            border-color: var(--accent);
+        }
+
+        .input-row input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .grades-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .grades-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--border);
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .grades-list .grade-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .grades-list .grade-letter {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 35px;
+        }
+
+        .grades-list .grade-points {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .grades-list .grade-source {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+
+        .grades-list .remove-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .grades-list .remove-btn:hover {
+            color: var(--error);
+            background-color: rgba(255, 71, 87, 0.1);
+        }
+
+        .cooked-msg {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .result-card {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            margin-top: 1.5rem;
+        }
+
+        .result-card .gpa {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-card .gpa-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-card .grade-summary {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .calc-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .calc-actions .btn {
+            flex: 1;
+        }
+
+        .hint {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../../index.html" class="logo">Maddox<span>Cox</span></a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#projects">Projects</a></li>
+                <li><a href="https://github.com/maddoxcox" target="_blank">GitHub</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="calc-container">
+        <div class="calc-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> / GPA Calculator
+            </div>
+            <h1>GPA Calculator</h1>
+            <p>Enter letter grades (A+ through F) or percentages (0-100).</p>
+        </div>
+
+        <div class="input-row">
+            <input type="text" id="grade-input" placeholder="e.g. A+, B-, 87, 92.5" autofocus>
+            <button class="btn btn-primary" id="add-btn">Add</button>
+        </div>
+        <p class="hint">Press Enter to add. Type a letter grade or a percentage.</p>
+
+        <ul class="grades-list" id="grades-list"></ul>
+
+        <div class="empty-state" id="empty-state">
+            No grades yet. Start typing above.
+        </div>
+
+        <div class="result-card" id="result-card" style="display: none;">
+            <div class="gpa" id="gpa-display">0.00</div>
+            <div class="gpa-label">Your GPA</div>
+            <div class="grade-summary" id="grade-summary"></div>
+        </div>
+
+        <div class="calc-actions">
+            <button class="btn btn-secondary" id="clear-btn">Clear All</button>
+            <a href="https://github.com/maddoxcox/ai-club-learning/blob/main/month-1-foundations/day-01-error-handler/grade_calculator.py" target="_blank" class="btn btn-secondary">View Python Source</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Maddox Cox — CS Student</p>
+        </div>
+    </footer>
+
+    <script>
+        const GRADE_POINTS = {
+            "A+": 4.0, "A": 4.0, "A-": 3.7,
+            "B+": 3.4, "B": 3.0, "B-": 2.7,
+            "C+": 2.4, "C": 2.0, "C-": 1.7,
+            "D+": 1.4, "D": 1.0, "D-": 0.7,
+            "F": 0.0,
+        };
+
+        function getGrade(percent) {
+            if (percent >= 94.0) return "A";
+            if (percent >= 90.0) return "A-";
+            if (percent >= 87.0) return "B+";
+            if (percent >= 83.0) return "B";
+            if (percent >= 80.0) return "B-";
+            if (percent >= 77.0) return "C+";
+            if (percent >= 73.0) return "C";
+            if (percent >= 70.0) return "C-";
+            if (percent >= 67.0) return "D+";
+            if (percent >= 63.0) return "D";
+            if (percent >= 60.0) return "D-";
+            return "F";
+        }
+
+        const grades = [];
+        const input = document.getElementById("grade-input");
+        const addBtn = document.getElementById("add-btn");
+        const clearBtn = document.getElementById("clear-btn");
+        const gradesList = document.getElementById("grades-list");
+        const emptyState = document.getElementById("empty-state");
+        const resultCard = document.getElementById("result-card");
+        const gpaDisplay = document.getElementById("gpa-display");
+        const gradeSummary = document.getElementById("grade-summary");
+
+        function addGrade() {
+            const raw = input.value.trim();
+            if (!raw) return;
+
+            let letter, source;
+            const num = parseFloat(raw);
+
+            if (!isNaN(num) && raw.match(/^-?\d+\.?\d*$/)) {
+                if (num < 0 || num > 100) {
+                    shakeInput();
+                    return;
+                }
+                letter = getGrade(num);
+                source = `${num}%`;
+            } else {
+                letter = raw.toUpperCase();
+                if (!(letter in GRADE_POINTS)) {
+                    shakeInput();
+                    return;
+                }
+                source = null;
+            }
+
+            grades.push({ letter, source });
+            input.value = "";
+            input.focus();
+            render();
+        }
+
+        function removeGrade(index) {
+            grades.splice(index, 1);
+            render();
+        }
+
+        function clearAll() {
+            grades.length = 0;
+            render();
+        }
+
+        function render() {
+            gradesList.innerHTML = "";
+            emptyState.style.display = grades.length === 0 ? "block" : "none";
+            resultCard.style.display = grades.length === 0 ? "none" : "block";
+
+            grades.forEach((g, i) => {
+                const li = document.createElement("li");
+                const cooked = g.letter === "F" ? '<span class="cooked-msg"> ur cooked 💀</span>' : "";
+                const sourceText = g.source ? `<span class="grade-source">from ${g.source}</span>` : "";
+
+                li.innerHTML = `
+                    <div class="grade-info">
+                        <span class="grade-letter">${g.letter}</span>
+                        <span class="grade-points">${GRADE_POINTS[g.letter]} pts ${sourceText}</span>
+                        ${cooked}
+                    </div>
+                    <button class="remove-btn" data-index="${i}">&times;</button>
+                `;
+                gradesList.appendChild(li);
+            });
+
+            gradesList.querySelectorAll(".remove-btn").forEach(btn => {
+                btn.addEventListener("click", () => removeGrade(parseInt(btn.dataset.index)));
+            });
+
+            if (grades.length > 0) {
+                const total = grades.reduce((sum, g) => sum + GRADE_POINTS[g.letter], 0);
+                const gpa = total / grades.length;
+                gpaDisplay.textContent = gpa.toFixed(2);
+                gradeSummary.textContent = grades.map(g => g.letter).join(", ");
+            }
+        }
+
+        function shakeInput() {
+            input.style.borderColor = "var(--error)";
+            input.classList.add("fade-in");
+            setTimeout(() => {
+                input.style.borderColor = "";
+                input.classList.remove("fade-in");
+            }, 500);
+        }
+
+        addBtn.addEventListener("click", addGrade);
+        clearBtn.addEventListener("click", clearAll);
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") addGrade();
+        });
+    </script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
