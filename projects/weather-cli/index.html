@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather CLI — Maddox Cox</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .calc-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        .calc-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .calc-header h1 {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Terminal Window */
+        .terminal {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid #3a3a4a;
+        }
+
+        .terminal-titlebar {
+            background-color: #2b2b3b;
+            padding: 0.6rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background-color: #ff5f57; }
+        .terminal-dot.yellow { background-color: #febc2e; }
+        .terminal-dot.green { background-color: #28c840; }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            color: #8a8a9a;
+            font-size: 0.8rem;
+            font-family: 'Fira Code', 'Consolas', monospace;
+        }
+
+        .terminal-body {
+            background-color: #1e1e2e;
+            padding: 1.25rem;
+            min-height: 280px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .terminal-output {
+            color: #cdd6f4;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.25rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .terminal-line .prompt {
+            color: #a6e3a1;
+        }
+
+        .terminal-line .cmd {
+            color: #89b4fa;
+        }
+
+        .terminal-line.error {
+            color: #f38ba8;
+        }
+
+        .terminal-line.success {
+            color: #a6e3a1;
+        }
+
+        .terminal-line.info {
+            color: #cdd6f4;
+        }
+
+        .terminal-line.dim {
+            color: #6c7086;
+        }
+
+        .terminal-input-row {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-top: 0.5rem;
+        }
+
+        .terminal-input-row .prompt-label {
+            color: #a6e3a1;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .terminal-input-row input {
+            flex: 1;
+            background: none;
+            border: none;
+            color: #cdd6f4;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            outline: none;
+            caret-color: #a6e3a1;
+            padding: 0;
+            margin-left: 0;
+        }
+
+        .terminal-input-row input::placeholder {
+            color: #585b70;
+        }
+
+        .terminal-actions {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background-color: #181825;
+            border-top: 1px solid #313244;
+        }
+
+        .terminal-btn {
+            padding: 0.4rem 1rem;
+            border: 1px solid #45475a;
+            border-radius: 5px;
+            background-color: #313244;
+            color: #cdd6f4;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .terminal-btn:hover {
+            background-color: #45475a;
+            border-color: #585b70;
+        }
+
+        .terminal-btn.run {
+            background-color: #a6e3a1;
+            color: #1e1e2e;
+            border-color: #a6e3a1;
+            font-weight: 600;
+        }
+
+        .terminal-btn.run:hover {
+            background-color: #94e2d5;
+            border-color: #94e2d5;
+        }
+
+        .calc-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .calc-actions .btn {
+            flex: 1;
+        }
+
+        /* Loading animation */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../../index.html" class="logo">Maddox<span>Cox</span></a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#projects">Projects</a></li>
+                <li><a href="https://github.com/maddoxcox" target="_blank">GitHub</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="calc-container">
+        <div class="calc-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> / Weather CLI
+            </div>
+            <h1>Weather CLI</h1>
+            <p>Search for any city and get current weather conditions.</p>
+        </div>
+
+        <div class="terminal">
+            <div class="terminal-titlebar">
+                <div class="terminal-dots">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                </div>
+                <span class="terminal-title">weather.py — Python</span>
+                <div style="width: 48px;"></div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-output" id="terminal-output">
+                    <div class="terminal-line dim">$ python weather.py</div>
+                </div>
+                <div class="terminal-input-row">
+                    <span class="prompt-label">$ Enter a city:&nbsp;</span>
+                    <input type="text" id="city-input" placeholder="New York" autofocus>
+                </div>
+            </div>
+            <div class="terminal-actions">
+                <button class="terminal-btn run" id="run-btn">Run</button>
+                <button class="terminal-btn" id="clear-btn">Clear</button>
+            </div>
+        </div>
+
+        <div class="calc-actions">
+            <a href="https://github.com/maddoxcox/ai-club-learning/blob/main/month-1-foundations/day-03-weather-cli/weather.py" target="_blank" class="btn btn-secondary">View Python Source</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Maddox Cox — CS Student</p>
+        </div>
+    </footer>
+
+    <script>
+        const API_KEY = "460d09b07ea4f5301529edb64536c1fe";
+        const cityInput = document.getElementById("city-input");
+        const runBtn = document.getElementById("run-btn");
+        const clearBtn = document.getElementById("clear-btn");
+        const output = document.getElementById("terminal-output");
+
+        function addLine(text, className) {
+            const line = document.createElement("div");
+            line.className = "terminal-line" + (className ? " " + className : "");
+            line.textContent = text;
+            output.appendChild(line);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        async function fetchWeather() {
+            const city = cityInput.value.trim();
+            if (!city) {
+                addLine("Error: Please enter a city name.", "error");
+                return;
+            }
+
+            addLine(`$ Enter a city: ${city}`, "dim");
+            addLine("Fetching weather data...", "dim");
+            cityInput.value = "";
+
+            try {
+                const res = await fetch(
+                    `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=imperial`
+                );
+
+                if (!res.ok) {
+                    if (res.status === 404) {
+                        addLine(`Error: City "${city}" not found.`, "error");
+                    } else {
+                        addLine(`Error: API returned status ${res.status}.`, "error");
+                    }
+                    addLine("", "");
+                    return;
+                }
+
+                const data = await res.json();
+                const tempF = data.main.temp;
+                const tempC = ((tempF - 32) * 5) / 9;
+                const location = `${data.name}, ${data.sys.country}`;
+                const description = data.weather[0].description;
+                const humidity = data.main.humidity;
+
+                addLine("");
+                addLine(location, "success");
+                addLine(`${tempF.toFixed(1)}°F / ${tempC.toFixed(1)}°C`, "info");
+                addLine(description, "info");
+                addLine(`Humidity: ${humidity}%`, "info");
+                addLine("", "");
+            } catch (err) {
+                addLine("Error: Could not connect to weather service.", "error");
+                addLine("", "");
+            }
+        }
+
+        function clearTerminal() {
+            output.innerHTML = "";
+            addLine("$ python weather.py", "dim");
+        }
+
+        runBtn.addEventListener("click", fetchWeather);
+        clearBtn.addEventListener("click", clearTerminal);
+        cityInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") fetchWeather();
+        });
+    </script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
